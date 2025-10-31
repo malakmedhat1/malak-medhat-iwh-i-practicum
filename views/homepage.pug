@@ -1,0 +1,30 @@
+// views/homepage.pug
+
+doctype html
+html
+  head
+    title= title
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    h1 Pet Records List
+    
+    // Link to the form to create a new record (Step 11 requirement)
+    a(href="/update-cobj") Add to this table
+    
+    if pets && pets.length
+      table(border="1")
+        thead
+          tr
+            th Name
+            th Bio
+            th Species
+        tbody
+          // Loop through the 'pets' array passed from the index.js route
+          each pet in pets
+            tr
+              // Access properties using pet.properties.<internal_name>
+              td= pet.properties.name
+              td= pet.properties.bio
+              td= pet.properties.species
+    else
+      p No pet records found.

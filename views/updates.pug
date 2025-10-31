@@ -1,0 +1,29 @@
+
+doctype html
+html
+  head
+    title= title
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    h1 Add New Pet Record
+    
+    // The form submits data to the POST /update-cobj route
+    form(action="/update-cobj" method="POST")
+      div
+        label(for="name") Name:
+        // IMPORTANT: name attribute must match the key in req.body in index.js
+        input(type="text" id="name" name="name" required)
+      
+      div
+        label(for="bio") Bio:
+        input(type="text" id="bio" name="bio" required)
+        
+      div
+        label(for="species") Species:
+        input(type="text" id="species" name="species" required)
+      
+      button(type="submit") Create Pet Record
+
+    hr
+    // Link back to the homepage
+    a(href="/") Return to the homepage
