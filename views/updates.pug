@@ -1,29 +1,39 @@
-
 doctype html
-html
-  head
-    title= title
-    link(rel="stylesheet", href="/css/style.css")
-  body
-    h1 Add New Pet Record
-    
-    // The form submits data to the POST /update-cobj route
-    form(action="/update-cobj" method="POST")
-      div
-        label(for="name") Name:
-        // IMPORTANT: name attribute must match the key in req.body in index.js
-        input(type="text" id="name" name="name" required)
-      
-      div
-        label(for="bio") Bio:
-        input(type="text" id="bio" name="bio" required)
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title= title
+        link(rel="stylesheet", href="/css/style.css")
+        // Add a style block for centering the form card
+        style.
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Centers horizontally */
+                min-height: 100vh; /* Takes full viewport height */
+                margin: 0;
+                padding: 2rem; /* Consistent padding */
+            }
+            .form-card {
+                margin-top: 2rem; /* Add some space from the top */
+                margin-bottom: 2rem;
+            }
+    body
+        h1= title
         
-      div
-        label(for="species") Species:
-        input(type="text" id="species" name="species" required)
-      
-      button(type="submit") Create Pet Record
-
-    hr
-    // Link back to the homepage
-    a(href="/") Return to the homepage
+        // --- ADDED THIS DIV WITH 'form-card' CLASS ---
+        div.form-card
+            form(action="/update-cobj", method="POST")
+                div
+                    label(for="name") Name:
+                    input(type="text", id="name", name="name", required)
+                div
+                    label(for="bio") Bio:
+                    textarea(id="bio", name="bio")
+                div
+                    label(for="species") Species:
+                    input(type="text", id="species", name="species")
+                button(type="submit") Submit
+        
+        a(href="/") Return to the homepage

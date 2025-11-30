@@ -1,30 +1,36 @@
-// views/homepage.pug
-
 doctype html
-html
-  head
-    title= title
-    link(rel="stylesheet", href="/css/style.css")
-  body
-    h1 Pet Records List
-    
-    // Link to the form to create a new record (Step 11 requirement)
-    a(href="/update-cobj") Add to this table
-    
-    if pets && pets.length
-      table(border="1")
-        thead
-          tr
-            th Name
-            th Bio
-            th Species
-        tbody
-          // Loop through the 'pets' array passed from the index.js route
-          each pet in pets
-            tr
-              // Access properties using pet.properties.<internal_name>
-              td= pet.properties.name
-              td= pet.properties.bio
-              td= pet.properties.species
-    else
-      p No pet records found.
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        // This title comes from your index.js route
+        title= title 
+        // Link to the CSS file in the 'public/css' folder
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        h1= title
+        
+        // Link to the "Add New" form page
+        a(href="/update-cobj") Add to this table
+        
+        table(class="cobj-table")
+            thead
+                tr
+                    th Name
+                    th Bio
+                    th Species 
+            tbody
+                // 
+                // === THIS IS THE FIX ===
+                // Loop over 'data' (which you passed from index.js)
+                // Also, check if 'data' exists first
+                //
+                if data
+                    each record in data
+                        tr
+                            td= record.properties.name
+                            td= record.properties.bio
+                            td= record.properties.species
+                else
+                    tr
+                        td(colspan="3") No records found.
